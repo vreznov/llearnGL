@@ -17,15 +17,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     glad/glad.c \
+    kshader.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    stb_image.cpp
 
 HEADERS += \
     GLFW/glfw3.h \
     GLFW/glfw3native.h \
     glad/glad.h \
     glad/khrplatform.h \
-    mainwindow.h
+    kshader.h \
+    mainwindow.h \
+    stb_image.h
 
 FORMS += \
     mainwindow.ui
