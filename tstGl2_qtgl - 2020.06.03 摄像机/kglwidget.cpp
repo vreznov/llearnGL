@@ -66,11 +66,14 @@ void KGLWidget::paintGL()
     glClearColor(m_clearColor.redF(), m_clearColor.greenF(), m_clearColor.blueF(), m_clearColor.alphaF());
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    m_pcam->processInput(0.2f);
+    m_pcam->processInput(1.f);
 
     m_textures[0]->bind(0);
     m_textures[1]->bind(1);
     m_program->bind();
+
+    m_view = QMatrix4x4();
+    m_program->setUniformValue("view", m_view);
 
     QMatrix4x4 projection;
     projection.perspective(m_pcam->zoom, 1.0f * width() / height(), 0.1f, 100.f);

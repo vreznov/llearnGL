@@ -67,6 +67,7 @@ private:
     QOpenGLShaderProgram *m_program;
     QOpenGLBuffer m_vbo;
     QOpenGLVertexArrayObject m_vao;
+    QMatrix4x4 m_view;
     QPoint m_lastPos;
     QVector3D m_cubePositions[10] = {
       QVector3D( 0.0f,  0.0f,  0.0f),
