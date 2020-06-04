@@ -12,5 +12,6 @@
         <file>images/box1.jpg</file>
         <file>images/glass1.jpg</file>
         <file>images/wall1.jpg</file>
+        <file>images/container2.png</file>
     </qresource>
 </RCC>

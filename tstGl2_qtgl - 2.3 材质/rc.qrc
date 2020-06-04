@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>cube_frag.txt</file>
+        <file>cube_vertex.txt</file>
+        <file>images/side1.png</file>
+        <file>images/side2.png</file>
+        <file>images/side3.png</file>
+        <file>images/side4.png</file>
+        <file>images/side5.png</file>
+        <file>images/side6.png</file>
+        <file>images/awesomeface.jpg</file>
+        <file>images/box1.jpg</file>
+        <file>images/glass1.jpg</file>
+        <file>images/wall1.jpg</file>
+        <file>lamp_frag.txt</file>
+        <file>lamp_vertex.txt</file>
+    </qresource>
+</RCC>

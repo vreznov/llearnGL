@@ -14,5 +14,7 @@
         <file>images/wall1.jpg</file>
         <file>lamp_frag.txt</file>
         <file>lamp_vertex.txt</file>
+        <file>images/container2.png</file>
+        <file>images/container2_specular.png</file>
     </qresource>
 </RCC>

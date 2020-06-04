@@ -8,47 +8,48 @@ KGLWidget::KGLWidget(QWidget *parent) : QOpenGLWidget(parent),
     memset(m_textures, 0, sizeof (m_textures));
 
     vertices = {
-        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-         0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+        // positions          // normals           // texture coords
+        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f,
+         0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 0.0f,
+         0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 1.0f,
+         0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 1.0f,
+        -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 1.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f,
 
-        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-         0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   0.0f, 0.0f,
+         0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   1.0f, 0.0f,
+         0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   1.0f, 1.0f,
+         0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   1.0f, 1.0f,
+        -0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   0.0f, 1.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   0.0f, 0.0f,
 
-        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-        -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-        -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
+        -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 1.0f,
+        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
+        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
+        -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 0.0f,
+        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
 
-         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-         0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-         0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-         0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-         0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
+         0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 1.0f,
+         0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
+         0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
+         0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 0.0f,
+         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
 
-        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-         0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-         0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-         0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 1.0f,
+         0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 1.0f,
+         0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 0.0f,
+         0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 0.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 0.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 1.0f,
 
-        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
+        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f,
+         0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 1.0f,
+         0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 0.0f,
+         0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 0.0f,
+        -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 0.0f,
+        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f
     };
     // 初始化观察相机
     m_pcam.reset(new Camera(QVector3D(5.0f, 0.0f, 10.0f)));
@@ -88,11 +89,6 @@ QSize KGLWidget::sizeHint() const
     return QSize(scr_width, scr_height);
 }
 
-void KGLWidget::rotateBy(int fml_xAngle, int fml_yAngle, int fml_zAngle)
-{
-    update();
-}
-
 void KGLWidget::setClearColor(const QColor &color)
 {
     m_clearColor = color;
@@ -116,6 +112,7 @@ void KGLWidget::paintGL()
 
     m_pcam->processInput(0.2f);
 
+    float angle = 0.5f * m_tmValue;
 
     // 立方体画图
     m_textures[0]->bind(0);
@@ -123,10 +120,30 @@ void KGLWidget::paintGL()
     m_pCubeShader->bind();
 
     m_pCubeShader->setUniformValue("objectColor", QVector3D(1.0f, 0.5f, 0.31f));
-    m_pCubeShader->setUniformValue("lightColor",  QVector3D(1.0f, 1.0f, 1.0f));
+//    m_pCubeShader->setUniformValue("lightColor",  QVector3D(1.0f, 1.0f, 1.0f));
+    // 改变颜色
+    m_lightColor.setX(sin(angle * 2.0f));
+    m_lightColor.setY(sin(angle * 0.7f));
+    m_lightColor.setZ(sin(angle * 1.3f));
+
     // 立方体光照
     m_pCubeShader->setUniformValue("lightPos", m_lightPos);
     m_pCubeShader->setUniformValue("viewPos", m_pcam->position);
+
+    // 材质相关
+//    QVector3D diffuseColor = m_lightColor * QVector3D(0.5f, 0.5f, 0.5f);
+//    QVector3D ambientColor = diffuseColor * QVector3D(0.5f, 0.5f, 0.5f);
+//    m_pCubeShader->setUniformValue("material.ambient", diffuseColor);
+//    m_pCubeShader->setUniformValue("material.diffuse", ambientColor);
+    m_pCubeShader->setUniformValue("material.ambient", QVector3D(1.f, 0.5f, 0.31f));
+//    m_pCubeShader->setUniformValue("material.diffuse", QVector3D(1.f, 0.5f, 0.31f));
+//    m_pCubeShader->setUniformValue("material.diffuse", 0);
+    m_pCubeShader->setUniformValue("material.specular", QVector3D(0.5f, 0.5f, 0.5f));
+    m_pCubeShader->setUniformValue("material.shininess", 64.f);
+    // 设置光照强度
+    m_pCubeShader->setUniformValue("light.ambient", QVector3D(0.2f, 0.2f, 0.2f));
+    m_pCubeShader->setUniformValue("light.diffuse", QVector3D(0.2f, 0.2f, 0.2f));
+    m_pCubeShader->setUniformValue("light.specular", QVector3D(0.2f, 0.2f, 0.2f));
 
     QMatrix4x4 projection, view;
     view = m_pcam->getViewMatrix();
@@ -140,7 +157,6 @@ void KGLWidget::paintGL()
         {
             QMatrix4x4 model;
             model.translate(m_cubePositions[i]);
-            float angle = 10.f * (i + 1.0f) * m_tmValue;
 //            model.rotate(angle, QVector3D(1.0f, 0.3f, 0.5f));
             m_pCubeShader->setUniformValue("model", model);
             glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -160,7 +176,7 @@ void KGLWidget::paintGL()
     m_pLampShader->setUniformValue("model", model);
     {
         QOpenGLVertexArrayObject::Binder vaoBinder(&m_lampVao);
-//        glDrawArrays(GL_TRIANGLES, 0, 36);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
     }
     m_pLampShader->release();
 }
@@ -246,11 +262,11 @@ void KGLWidget::loadCube()
 
     m_pCubeShader->setAttributeBuffer(PROGRAM_VERTEX_ATTRIBUTE, GL_FLOAT, 0, 3, VERTEX_ELEMENT_LENGTH * sizeof(GLfloat));
     m_pCubeShader->enableAttributeArray(PROGRAM_VERTEX_ATTRIBUTE);
-    m_pCubeShader->setAttributeBuffer(PROGRAM_TEXCOORD_ATTRIBUTE, GL_FLOAT, 3 * sizeof(GLfloat), 2, VERTEX_ELEMENT_LENGTH * sizeof(GLfloat));
+    m_pCubeShader->setAttributeBuffer(PROGRAM_TEXCOORD_ATTRIBUTE, GL_FLOAT,  6 * sizeof(GLfloat), 2, VERTEX_ELEMENT_LENGTH * sizeof(GLfloat));
     m_pCubeShader->enableAttributeArray(PROGRAM_TEXCOORD_ATTRIBUTE);
 
-    QImage img1(QString("://images/wall1.jpg"));
-    QImage img2(QString("://images/awesomeface.jpg"));
+    QImage img1(QString("://images/container2.png"));
+    QImage img2(QString("://images/container2_specular.png"));
     m_textures[0] = new QOpenGLTexture(img1) ;
     m_textures[1] = new QOpenGLTexture(img2.mirrored()) ;
     bool suc_texture[TEXTURE_NUM] = {false};
@@ -270,10 +286,13 @@ void KGLWidget::loadCube()
 
     m_pCubeShader->bind();
 
-    m_pCubeShader->setUniformValue("texture1", 0);
-    m_pCubeShader->setUniformValue("texture2", 1);
+    // 设置材质参数
+    m_pCubeShader->setUniformValue("material.diffuse", 0);
+    m_pCubeShader->setUniformValue("material.specular", 1);
+
     m_pCubeShader->release();
     m_vbo.release();
+
 }
 
 void KGLWidget::loadLamp()
@@ -293,6 +312,7 @@ void KGLWidget::loadLamp()
     m_pLampShader->setAttributeBuffer(0, GL_FLOAT, 0, 3, VERTEX_ELEMENT_LENGTH * sizeof (GLfloat));
     m_pLampShader->enableAttributeArray(0);
     m_pLampShader->bind();
+
     m_vbo.release();
 }
 

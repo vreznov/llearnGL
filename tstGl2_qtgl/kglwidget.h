@@ -29,9 +29,9 @@ QT_FORWARD_DECLARE_CLASS(QOpenGLShaderProgram)
 QT_FORWARD_DECLARE_CLASS(QOpenGLTexture)
 
 #define PROGRAM_VERTEX_ATTRIBUTE 0
-#define PROGRAM_TEXCOORD_ATTRIBUTE 1
+#define PROGRAM_TEXCOORD_ATTRIBUTE 2
 #define TEXTURE_NUM 2
-#define VERTEX_ELEMENT_LENGTH 6
+#define VERTEX_ELEMENT_LENGTH 8
 
 class KGLWidget : public QOpenGLWidget, protected QOpenGLFunctions
 {
@@ -43,7 +43,6 @@ public:
 
     QSize minimumSizeHint() const override;
     QSize sizeHint() const override;
-    void rotateBy(int fml_xAngle, int fml_yAngle, int fml_zAngle);
     void setClearColor(const QColor &color);
 
     const int scr_width = 800;
@@ -69,7 +68,7 @@ private:
     QOpenGLShaderProgram *m_pCubeShader = nullptr, *m_pLampShader = nullptr;
     QOpenGLBuffer m_vbo;
     QOpenGLVertexArrayObject m_cubeVao, m_lampVao;
-    QVector3D m_lightPos;
+    QVector3D m_lightPos, m_lightColor;
 
     QPoint m_lastPos;
     QVector3D m_cubePositions[10] = {

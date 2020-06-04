@@ -120,6 +120,7 @@ release/qrc_rc.cpp: ../tstGl2_qtgl/rc.qrc \
 		../tstGl2_qtgl/images/awesomeface.jpg \
 		../tstGl2_qtgl/images/glass1.jpg \
 		../tstGl2_qtgl/images/side4.png \
+		../tstGl2_qtgl/images/container2.png \
 		../tstGl2_qtgl/images/side3.png \
 		../tstGl2_qtgl/images/wall1.jpg \
 		../tstGl2_qtgl/images/box1.jpg \

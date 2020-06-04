@@ -231,7 +231,7 @@ void KGLWidget::loadCube()
 
     glEnable(GL_DEPTH_TEST);
 
-    QImage img1(QString("://images/wall1.jpg"));
+    QImage img1(QString("://images/container2.png"));
     QImage img2(QString("://images/awesomeface.jpg"));
     m_textures[0] = new QOpenGLTexture(img1) ;
     m_textures[1] = new QOpenGLTexture(img2.mirrored()) ;
