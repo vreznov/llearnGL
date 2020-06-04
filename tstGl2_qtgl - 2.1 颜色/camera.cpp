@@ -34,20 +34,18 @@ QMatrix4x4 Camera::getViewMatrix()
 void Camera::processKeyboard(Camera_Movement direction, float deltaTime)
 {
     float velocity = this->movementSpeed * deltaTime;
-    if (direction == UP)
-        this->position -= this->up * velocity;
-    if (direction == DOWN)
-        this->position += this->up * velocity;
-
-    if (direction == LEFT)
-        this->position += this->right * velocity;
-    if (direction == RIGHT)
-        this->position -= this->right * velocity;
-
     if (direction == FORWARD)
-        this->position += this->worldUp * velocity;
+        this->position += this->front * velocity;
     if (direction == BACKWARD)
-        this->position -= this->worldUp * velocity;
+        this->position -= this->front * velocity;
+  if (direction == LEFT)
+    this->position -= this->right * velocity;
+  if (direction == RIGHT)
+    this->position += this->right * velocity;
+  if (direction == UP)
+    this->position += this->worldUp * velocity;
+  if (direction == DOWN)
+    this->position -= this->worldUp * velocity;
 }
 
 // Processes input received from a mouse input system. Expects the offset value in both the x and y direction.
@@ -83,17 +81,17 @@ void Camera::processMouseScroll(float yoffset)
 void Camera::processInput(float dt)
 {
     if (keys[Qt::Key_W])
-      processKeyboard(UP, dt);
+      processKeyboard(FORWARD, dt);
     if (keys[Qt::Key_S])
-      processKeyboard(DOWN, dt);
+      processKeyboard(BACKWARD, dt);
     if (keys[Qt::Key_A])
       processKeyboard(LEFT, dt);
     if (keys[Qt::Key_D])
       processKeyboard(RIGHT, dt);
     if (keys[Qt::Key_E])
-      processKeyboard(FORWARD, dt);
+      processKeyboard(UP, dt);
     if (keys[Qt::Key_Q])
-      processKeyboard(BACKWARD, dt);
+      processKeyboard(DOWN, dt);
 }
 
 void Camera::

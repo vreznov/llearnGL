@@ -111,8 +111,10 @@ compiler_rcc_clean:
 	-$(DEL_FILE) release\qrc_rc.cpp
 release/qrc_rc.cpp: ../tstGl2_qtgl/rc.qrc \
 		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/bin/rcc.exe \
-		../tstGl2_qtgl/fragment.txt \
-		../tstGl2_qtgl/vertex.txt \
+		../tstGl2_qtgl/cube_frag.txt \
+		../tstGl2_qtgl/cube_vertex.txt \
+		../tstGl2_qtgl/lamp_vertex.txt \
+		../tstGl2_qtgl/lamp_frag.txt \
 		../tstGl2_qtgl/images/side1.png \
 		../tstGl2_qtgl/images/side5.png \
 		../tstGl2_qtgl/images/awesomeface.jpg \
@@ -286,6 +288,8 @@ release/moc_kglwidget.cpp: ../tstGl2_qtgl/kglwidget.h \
 		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtCore/qtimer.h \
 		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtCore/qbasictimer.h \
 		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtGui/QImage \
+		../tstGl2_qtgl/camera.h \
+		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtGui/QKeyEvent \
 		release/moc_predefs.h \
 		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/bin/moc.exe
 	D:\Qt\Qt5.12.5\5.12.5\mingw73_64\bin\moc.exe $(DEFINES) --include G:/VDoc/QtProg/tstGL/build-tstGl2_qtgl-Desktop_Qt_5_12_5_MinGW_64_bit-Debug/release/moc_predefs.h -ID:/Qt/Qt5.12.5/5.12.5/mingw73_64/mkspecs/win32-g++ -IG:/VDoc/QtProg/tstGL/tstGl2_qtgl -ID:/Qt/Qt5.12.5/5.12.5/mingw73_64/include -ID:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtWidgets -ID:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtGui -ID:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtANGLE -ID:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtCore -I. -ID:/Qt/Qt5.12.5/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Qt/Qt5.12.5/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Qt/Qt5.12.5/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/Qt5.12.5/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Qt/Qt5.12.5/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Qt/Qt5.12.5/Tools/mingw730_64/x86_64-w64-mingw32/include ..\tstGl2_qtgl\kglwidget.h -o release\moc_kglwidget.cpp
@@ -667,7 +671,9 @@ release/kglwidget.o: ../tstGl2_qtgl/kglwidget.cpp ../tstGl2_qtgl/kglwidget.h \
 		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtCore/QTimer \
 		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtCore/qtimer.h \
 		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtCore/qbasictimer.h \
-		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtGui/QImage
+		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtGui/QImage \
+		../tstGl2_qtgl/camera.h \
+		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtGui/QKeyEvent
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\kglwidget.o ..\tstGl2_qtgl\kglwidget.cpp
 
 release/main.o: ../tstGl2_qtgl/main.cpp ../tstGl2_qtgl/mainwindow.h \
@@ -833,7 +839,9 @@ release/main.o: ../tstGl2_qtgl/main.cpp ../tstGl2_qtgl/mainwindow.h \
 		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtCore/QTimer \
 		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtCore/qtimer.h \
 		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtCore/qbasictimer.h \
-		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtGui/QImage
+		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtGui/QImage \
+		../tstGl2_qtgl/camera.h \
+		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtGui/QKeyEvent
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\main.o ..\tstGl2_qtgl\main.cpp
 
 release/mainwindow.o: ../tstGl2_qtgl/mainwindow.cpp ../tstGl2_qtgl/mainwindow.h \
@@ -943,23 +951,7 @@ release/mainwindow.o: ../tstGl2_qtgl/mainwindow.cpp ../tstGl2_qtgl/mainwindow.h 
 		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtGui/qtouchdevice.h \
 		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtWidgets/qtabwidget.h \
 		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtGui/qicon.h \
-		ui_mainwindow.h \
-		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtCore/QVariant \
-		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtWidgets/QApplication \
-		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtWidgets/qapplication.h \
-		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtCore/qcoreapplication.h \
-		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtCore/qeventloop.h \
-		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtWidgets/qdesktopwidget.h \
-		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtGui/qguiapplication.h \
-		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtGui/qinputmethod.h \
-		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtWidgets/QMenuBar \
-		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtWidgets/qmenubar.h \
-		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtWidgets/qmenu.h \
-		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtWidgets/qaction.h \
-		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtWidgets/qactiongroup.h \
-		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtWidgets/QStatusBar \
-		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtWidgets/qstatusbar.h \
-		D:/Qt/Qt5.12.5/5.12.5/mingw73_64/include/QtWidgets/QWidget
+		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o ..\tstGl2_qtgl\mainwindow.cpp
 
 release/qrc_rc.o: release/qrc_rc.cpp 

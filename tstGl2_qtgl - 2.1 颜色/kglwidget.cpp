@@ -7,49 +7,6 @@ KGLWidget::KGLWidget(QWidget *parent) : QOpenGLWidget(parent),
 {
     memset(m_textures, 0, sizeof (m_textures));
 
-    vertices = {
-        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-         0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-
-        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-         0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-
-        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-        -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-        -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-
-         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-         0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-         0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-         0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-         0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-
-        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-         0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-         0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-         0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-
-        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
-         0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-         0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
-    };
     // 初始化观察相机
     m_pcam.reset(new Camera(QVector3D(5.0f, 0.0f, 10.0f)));
     // 初始化位置
@@ -116,7 +73,6 @@ void KGLWidget::paintGL()
 
     m_pcam->processInput(0.2f);
 
-
     // 立方体画图
     m_textures[0]->bind(0);
     m_textures[1]->bind(1);
@@ -124,10 +80,6 @@ void KGLWidget::paintGL()
 
     m_pCubeShader->setUniformValue("objectColor", QVector3D(1.0f, 0.5f, 0.31f));
     m_pCubeShader->setUniformValue("lightColor",  QVector3D(1.0f, 1.0f, 1.0f));
-    // 立方体光照
-    m_pCubeShader->setUniformValue("lightPos", m_lightPos);
-    m_pCubeShader->setUniformValue("viewPos", m_pcam->position);
-
     QMatrix4x4 projection, view;
     view = m_pcam->getViewMatrix();
     projection.perspective(m_pcam->zoom, 1.0f * width() / height(), 0.1f, 100.f);
@@ -140,8 +92,8 @@ void KGLWidget::paintGL()
         {
             QMatrix4x4 model;
             model.translate(m_cubePositions[i]);
-            float angle = 10.f * (i + 1.0f) * m_tmValue;
-//            model.rotate(angle, QVector3D(1.0f, 0.3f, 0.5f));
+            float angle = (i + 1.0f) * m_tmValue;
+            model.rotate(angle, QVector3D(1.0f, 0.3f, 0.5f));
             m_pCubeShader->setUniformValue("model", model);
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
@@ -160,7 +112,7 @@ void KGLWidget::paintGL()
     m_pLampShader->setUniformValue("model", model);
     {
         QOpenGLVertexArrayObject::Binder vaoBinder(&m_lampVao);
-//        glDrawArrays(GL_TRIANGLES, 0, 36);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
     }
     m_pLampShader->release();
 }
@@ -244,9 +196,9 @@ void KGLWidget::loadCube()
     m_vbo.bind();
     m_vbo.allocate(vertices.constData(), static_cast<int>(vertices.count()) * static_cast<int>(sizeof (GLfloat)) );
 
-    m_pCubeShader->setAttributeBuffer(PROGRAM_VERTEX_ATTRIBUTE, GL_FLOAT, 0, 3, VERTEX_ELEMENT_LENGTH * sizeof(GLfloat));
+    m_pCubeShader->setAttributeBuffer(PROGRAM_VERTEX_ATTRIBUTE, GL_FLOAT, 0, 3, 5 * sizeof(GLfloat));
     m_pCubeShader->enableAttributeArray(PROGRAM_VERTEX_ATTRIBUTE);
-    m_pCubeShader->setAttributeBuffer(PROGRAM_TEXCOORD_ATTRIBUTE, GL_FLOAT, 3 * sizeof(GLfloat), 2, VERTEX_ELEMENT_LENGTH * sizeof(GLfloat));
+    m_pCubeShader->setAttributeBuffer(PROGRAM_TEXCOORD_ATTRIBUTE, GL_FLOAT, 3 * sizeof(GLfloat), 2, 5 * sizeof(GLfloat));
     m_pCubeShader->enableAttributeArray(PROGRAM_TEXCOORD_ATTRIBUTE);
 
     QImage img1(QString("://images/wall1.jpg"));
@@ -290,7 +242,7 @@ void KGLWidget::loadLamp()
     QOpenGLVertexArrayObject::Binder vaoBinder(&m_lampVao);
     m_vbo.bind();
 
-    m_pLampShader->setAttributeBuffer(0, GL_FLOAT, 0, 3, VERTEX_ELEMENT_LENGTH * sizeof (GLfloat));
+    m_pLampShader->setAttributeBuffer(0, GL_FLOAT, 0, 3, 5 * sizeof (GLfloat));
     m_pLampShader->enableAttributeArray(0);
     m_pLampShader->bind();
     m_vbo.release();
